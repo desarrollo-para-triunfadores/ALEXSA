@@ -1,0 +1,1 @@
+$('.top_slider').slick({dots:true,arrows:false,infinite:true,autoplay:true,autoplaySpeed:$('.top_slider').data('speed'),fade:true,draggable:true});
