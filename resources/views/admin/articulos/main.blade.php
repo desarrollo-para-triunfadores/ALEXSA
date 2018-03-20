@@ -51,8 +51,8 @@ Artículos registrados
                                 <tr>
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Marca</th>
+                                    <th class="text-center">ID Tango</th>
                                     <th class="text-center">Subrubro</th>
-                                    <th class="text-center">Descripción</th>
                                     <th class="text-center">Pedidos web</th>
                                     <th class="text-center">Fecha alta</th>
                                     <th class="text-center">Acciones</th>
@@ -63,12 +63,19 @@ Artículos registrados
                                     <tr>
                                         <td class="text-center text-bold">{{$articulo->nombre}}</td>
                                         <td class="text-center">{{$articulo->marca->nombre}}</td>
+                                        @if($articulo->cod_tango)
+                                            <td class="text-center text-bold">{{$articulo->cod_tango}}</td>
+                                        @else
+                                        <td class="text-center text-yellow">*Aún no referenciado*</td>
+                                        @endif    
                                         <td class="text-center">{{$articulo->subrubro->nombre}}</td>
+                                        {{--
                                         @if($articulo->descripcion)
                                             <td class="text-center">{{$articulo->descripcion}}</td>
                                         @else
                                             <td class="text-center text-yellow">-</td>
                                         @endif
+                                        --}}
                                         <td class="text-center">0</td>
                                         @if($articulo->created_at)
                                             <td class="text-center">{{$articulo->created_at->format('d/m/Y')}}</td>
@@ -87,9 +94,10 @@ Artículos registrados
                             <tfoot>
                                 <tr>
                                     <th class="text-center">Nombre</th>
+                                    <th class="text-center">ID Tango</th>
                                     <th class="text-center">Marca</th>
                                     <th class="text-center">Subrubro</th>
-                                    <th class="text-center">Descripción</th>
+                                    
                                     <th class="text-center">Pedidos web</th>
                                     <th class="text-center">Fecha alta</th>
                                     <th class="text-center">Acciones</th>

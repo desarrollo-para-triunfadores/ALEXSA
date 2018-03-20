@@ -8,14 +8,22 @@
             </div>
             <div class="modal-body">
                 @include('admin.partes.msj_lista_errores')
-                <form action="/admin/paises" method="POST">
+                <form action="/admin/marcas" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">                                                           
                     <h3>Detalles del registro</h3>
                     <br>
                     <div class="form-group">
                         <label>Nombre:</label>
                         <input name="nombre" type="text" maxlength="50" class="form-control" placeholder="campo requerido" required>
-                    </div>                                                            
+                    </div> 
+                    <div class="form-group">
+                        <label>País Origen:</label>
+                        <select style="width: 100%"  name="pais_id"  placeholder="campo requerido"  class="select2 form-control">
+                            @foreach($paises as $pais)
+                            <option value="{{$pais->id}}">{{$pais->nombre}}</option>                                                    
+                            @endforeach
+                        </select> 
+                    </div>                                                                
                     <button id="boton_submit_crear" type="submit" class="btn btn-primary hide"></button>
                 </form>
                 <br>      

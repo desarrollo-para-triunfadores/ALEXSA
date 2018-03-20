@@ -13,7 +13,6 @@ Marcas registradas
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-suitcase"></i> Generales</a></li>
-            <li>Lugares</li>
             <li class="active">Marcas</li>
         </ol>
     </section>
@@ -35,25 +34,22 @@ Marcas registradas
                             <div class="row">
                                 @foreach($marcas as $marca)
                                         <div class="col-md-3">
-                                            @if ($marca->imagen === "sin imagen")
-                                                <div class="thumbnail"><img class="img-rounded" style="width:300px;height:200px" src="{{ asset('imagenes/marcas/sin-logo.jpg') }}"/>
-                                                    <div class="caption"><a data-toggle="tooltip" data-placement="left" title="Visualizar registro. Al visualizar este registro podrá acceder acciones como edición y eliminación del mismo" href=""> <h3>{{ $marca->nombre }}</h3></a>
-
-                                                        <p><h4>Origen: </h4></p>
-
-                                                    </div>
-                                                </div>
-                                            @else
-                                                <div class="thumbnail"><img class="img-rounded" style="width:470px;height:120px" src="{{ asset('imagenes/marcas2/' . $marca->logo) }}"/>
-                                                    <div class="caption"><a data-toggle="tooltip" data-placement="left" title="Visualizar registro. Al visualizar este registro podrá acceder acciones como edición y eliminación del mismo" href=""> <h3><b>{{ $marca->nombre }}</b></h3></a>
-                                                        {{--<p><h5>{{ $marca->localidad->nombre." (".$marca->localidad->provincia->nombre.")" }}</h5></p>--}}
-                                                    </div>
-                                                </div>
+                                            @if ($marca->logo === "sin imagen")
+                                                <div class="thumbnail"><img class="img-rounded" style="width:300px;height:200px" src="{{ asset('imagenes/marcas/sin-imagen.jpg') }}"/>
+                                            @else   
+                                                <div class="thumbnail"><img class="img-rounded" style="width:470px;height:120px" src="{{ asset('imagenes/marcas/' . $marca->logo) }}"/>           
                                             @endif
+                                                <div class="caption"><a data-toggle="tooltip" data-placement="left" title="Visualizar registro. Al visualizar este registro podrá acceder acciones como edición y eliminación del mismo" href=""> <h3>{{ $marca->nombre }}</h3></a>
+                                                       @if($marca->pais->nombre === 'Argentina')
+                                                            <p><h4>Marca de producción Nacional</h4></p>
+                                                       @else
+                                                            <p><h4>Origen: {{ $marca->pais->nombre }}</h4></p>
+                                                       @endif    
+                                                    </div>
+                                                </div>                                        
                                         </div>
                                 @endforeach
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -74,8 +70,7 @@ Marcas registradas
                             <thead>
                                 <tr>                                  
                                     <th class="text-center">Nombre</th>
-                                    <th class="text-center">Cantidad de provincias asociadas</th>
-                                    <th class="text-center">Fecha alta</th>
+                                    <th class="text-center">Cantidad de productos de ésta marca</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -83,8 +78,7 @@ Marcas registradas
                                 @foreach($marcas as $marca)
                                 <tr>                                    
                                     <td class="text-center text-bold">{{$marca->nombre}}</td>
-                                    <td class="text-center">{{-- $marca->articulos->count()--}}</td>
-                                    <td class="text-center">{{-- $marca->created_at->format('d/m/Y') --}}</td>
+                                    <td class="text-center">{{ $marca->articulos->count() }}</td>
                                     <td class="text-center">
                                         <a onclick="completar_campos({{$marca}})" title="Editar este registro" class="btn btn-social-icon btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
                                         <a onclick="abrir_modal_borrar({{$marca->id}})" title="Eliminar este registro" class="btn btn-social-icon btn-sm btn-danger"><i class="fa fa-trash"></i></a>
@@ -96,7 +90,6 @@ Marcas registradas
                                 <tr>                                  
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Cantidad de articulos asociadas</th>
-                                    <th class="text-center">Fecha alta</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>
@@ -104,7 +97,7 @@ Marcas registradas
                     </div> 
                     <div class="box-footer">
                         <button title="Registrar una marca" type="button" id="boton-modal-crear" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-crear">
-                            <i class="fa fa-plus-circle"></i> &nbsp;registrar marca
+                            <i class="fa fa-plus-circle"></i> &nbsp;Registrar Marca
                         </button>
                     </div>
                 </div>

@@ -22,11 +22,30 @@
                                         <input name="nombre" id="nombre" type="text" maxlength="50" class="form-control" placeholder="campo requerido" required>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Marca:</label>
+                                            <select style="width: 100%"  name="marca_id" id="marca_id" placeholder="campo requerido"  class="select2 form-control">
+                                                @foreach($marcas as $marca)
+                                                    <option value="{{$marca->id}}">{{$marca->nombre}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                </div>
                                 
                             </div>
 
-                            <div class="row">
-                            
+                            <div class="row">         
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Rubro:</label>
+                                        <select title="Rubro al que pertenece" style="width: 100%"  name="rubro_id" id="rubro_id" placeholder="no requerido"  class="select2 form-control">
+                                            @foreach($rubros as $rubro)
+                                                <option value="{{$rubro->id}}">{{$rubro->nombre}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>                   
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Subrubro:</label>
@@ -37,18 +56,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Marca:</label>
-                                            <select style="width: 100%"  name="marca_id" id="marca_id" placeholder="campo requerido"  class="select2 form-control">
-                                                @foreach($marcas as $marca)
-                                                    <option value="{{$marca->id}}">{{$marca->nombre}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>ID Tango:</label>
+                                        <input title="codigo que corresponde al articulo en software Tango Gestión" style="width: 80%"  name="cod_tango" id="cot_tango" placeholder="no requerido"  class="form-control">
                                     </div>
-                            </div>
-                         
+                                </div>                                
+                            </div>                        
              
                             <br>
                              <hr/>  

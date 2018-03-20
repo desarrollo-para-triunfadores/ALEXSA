@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2017 a las 19:25:59
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.0.22
+-- Tiempo de generación: 20-03-2018 a las 03:00:31
+-- Versión del servidor: 10.1.30-MariaDB
+-- Versión de PHP: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,10 +39,11 @@ CREATE TABLE `articulos` (
   `ancho` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `color_id` int(10) UNSIGNED DEFAULT NULL,
   `talle_id` int(10) UNSIGNED DEFAULT NULL,
-  `material_id` int(10) UNSIGNED DEFAULT NULL,
+  `material_id` int(11) DEFAULT NULL,
   `descripcion` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `imagen` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `estado` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cod_tango` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -51,19 +52,21 @@ CREATE TABLE `articulos` (
 -- Volcado de datos para la tabla `articulos`
 --
 
-INSERT INTO `articulos` (`id`, `nombre`, `umedida_id`, `marca_id`, `subrubro_id`, `minimo_vendible`, `alto`, `ancho`, `color_id`, `talle_id`, `material_id`, `descripcion`, `imagen`, `estado`, `created_at`, `updated_at`) VALUES
-(1, 'Tenaza Carpintero 7', 6, 2, 11, 1, NULL, NULL, 5, NULL, NULL, '-Tenaza con agarre y mango aislador\r\n', 'tenaza.jpg', NULL, '2017-11-13 03:00:00', NULL),
-(2, 'Tenaza Carpintero 8', 6, 3, 11, 1, NULL, NULL, 6, NULL, NULL, NULL, 'tenaza8.jpg', NULL, '2017-11-08 03:00:00', NULL),
-(3, 'Alicate c. oblic/crom', 6, 3, 11, 1, NULL, NULL, 0, NULL, NULL, NULL, 'alicate universal.jpg', NULL, '2017-11-15 03:00:00', NULL),
-(4, 'Pinza de fuerza 10 imp', 6, 3, 11, 1, NULL, NULL, 6, NULL, NULL, NULL, 'pinza-universal-crossman.jpg', NULL, '2017-11-06 03:00:00', NULL),
-(5, 'Soldadora Inverter MMA Shyuan 160 A', 6, 3, 12, 1, NULL, NULL, 0, NULL, NULL, 'Soldadora de 160 Amperios IGTB', 'soldadora-160.jpg', NULL, '2017-11-01 03:00:00', NULL),
-(6, 'Soldadora MMA 250 A', 6, 5, 12, 1, NULL, NULL, 5, NULL, NULL, 'Soldadora inverter Gamma de 250 Amperios', 'soldadora-gamma.jpg', NULL, '2017-11-15 03:00:00', NULL),
-(7, 'Soldadora Inverter MMA TIG 200 A', 6, 7, 12, 1, NULL, NULL, 0, NULL, NULL, 'Compactas, más eficaces y de mayor rendimiento\r\n* Alta tecnología y excelente rendimiento\r\n* Capaces de fundir acero inoxidable, fundición y hierro\r\n* Con protección por bajo voltaje sobre corriente recalentamiento, etc\r\n* Salida de corriente constante que hace más estable el arco', 'tauro.jpg', NULL, '2017-11-12 03:00:00', NULL),
-(8, 'Soldadora MIG 250 A', 6, 5, 12, 1, NULL, NULL, 5, NULL, NULL, 'Compactas, más eficaces y de mayor rendimiento\r\n* Alta tecnología y excelente rendimiento\r\n* Capaces de fundir acero inoxidable, fundición y hierro\r\n* Con protección por bajo voltaje sobre corriente recalentamiento, etc\r\n* Salida de corriente constante que hace más estable el arco', 'soldadora_mig_250.jpg', NULL, '2017-11-14 03:00:00', NULL),
-(10, 'Tornillo Allen 9', 6, 6, 13, 50, NULL, NULL, NULL, NULL, NULL, 'Cabeza Cilindrica', 'allen.jpg', NULL, '2017-11-06 03:00:00', NULL),
-(11, 'Tornillo Allen 80', 6, 6, 13, 100, NULL, NULL, NULL, NULL, NULL, 'Cabeza Cilindrica', 'allen.jpg', NULL, '2017-11-06 03:00:00', NULL),
-(12, 'Tornillo Allen 200', 6, 6, 13, 50, NULL, NULL, NULL, NULL, NULL, 'Cabeza Cilindrica', 'allen.jpg', NULL, '2017-11-05 03:00:00', NULL),
-(13, 'Tornillo Allen 12', 6, 6, 13, 50, NULL, NULL, NULL, NULL, NULL, 'Cabeza Cilindrica', 'allen.jpg', NULL, '2017-11-05 03:00:00', NULL);
+INSERT INTO `articulos` (`id`, `nombre`, `umedida_id`, `marca_id`, `subrubro_id`, `minimo_vendible`, `alto`, `ancho`, `color_id`, `talle_id`, `material_id`, `descripcion`, `imagen`, `estado`, `cod_tango`, `created_at`, `updated_at`) VALUES
+(1, 'Tenaza Carpintero 7', 6, 2, 11, 1, NULL, NULL, 5, NULL, NULL, NULL, 'tenaza8.jpg', NULL, NULL, NULL, NULL),
+(2, 'Tenaza Carpintero 8', 6, 3, 11, 1, NULL, NULL, 6, NULL, NULL, NULL, 'tenaza.jpg', NULL, NULL, NULL, NULL),
+(3, 'Alicate c. oblic/crom', 6, 3, 11, 1, NULL, NULL, 0, NULL, NULL, NULL, 'alicate universal.jpg', NULL, NULL, NULL, NULL),
+(4, 'Pinza de fuerza 10 imp', 6, 3, 11, 1, NULL, NULL, 6, NULL, NULL, NULL, 'pinza-universal-crossman.jpg', NULL, NULL, NULL, NULL),
+(5, 'Soldadora Inverter MMA Shyuan 160 A', 6, 3, 12, 1, NULL, NULL, 0, NULL, NULL, 'Soldadora de 160 Amperios IGTB', 'soldadora-160.jpg', NULL, NULL, NULL, NULL),
+(7, 'Soldadora Inverter MMA TIG 200 A', 6, 7, 12, 1, NULL, NULL, 0, NULL, NULL, 'Compactas, más eficaces y de mayor rendimiento\r\n* Alta tecnología y excelente rendimiento\r\n* Capaces de fundir acero inoxidable, fundición y hierro\r\n* Con protección por bajo voltaje sobre corriente recalentamiento, etc\r\n* Salida de corriente constante que hace más estable el arco', 'soldadora-gamma.jpg', NULL, NULL, NULL, NULL),
+(8, 'Soldadora MMA 250 A', 6, 5, 12, 1, NULL, NULL, 5, NULL, NULL, 'Compactas, más eficaces y de mayor rendimiento\r\n* Alta tecnología y excelente rendimiento\r\n* Capaces de fundir acero inoxidable, fundición y hierro\r\n* Con protección por bajo voltaje sobre corriente recalentamiento, etc\r\n* Salida de corriente constante que hace más estable el arco', 'soldadora_mig_250.jpg', NULL, NULL, NULL, NULL),
+(9, 'Tornillo Allen 12', NULL, 6, 13, 50, NULL, NULL, NULL, NULL, NULL, 'Cabeza Cilindrica', 'tornillos-allen.jpg', NULL, NULL, NULL, NULL),
+(10, 'Tornillo Allen 9', NULL, 6, 13, 50, NULL, NULL, NULL, NULL, NULL, 'Cabeza Cilindrica', 'tornillos-allen.jpg', NULL, NULL, NULL, NULL),
+(11, 'Tornillo Allen 80', 6, 6, 13, 100, NULL, NULL, NULL, NULL, NULL, 'Cabeza Cilindrica', 'tornillos-allen.jpg', NULL, NULL, NULL, NULL),
+(12, 'Tornillo Allen 200', 6, 6, 13, 50, NULL, NULL, NULL, NULL, NULL, 'Cabeza Cilindrica', 'tornillos-allen.jpg', NULL, NULL, NULL, NULL),
+(17, 'Llave Combinada 1/4\'\'', 6, 6, 11, 1, NULL, NULL, NULL, NULL, 3, NULL, 'G:\\xampp\\tmp\\php8A64.tmp', NULL, NULL, '2018-03-05 14:29:34', '2018-03-05 14:29:34'),
+(23, 'XXX', 6, 4, 2, 1, NULL, NULL, NULL, NULL, 0, 'Descripcion 1 | Descripcion 2', 'articulo_1521509570.png', NULL, NULL, '2018-03-20 01:32:50', '2018-03-20 01:32:50'),
+(24, 'dasd', 1, 1, 1, 1, NULL, NULL, NULL, NULL, 0, NULL, 'sin imagen', NULL, 4442123, '2018-03-20 01:33:49', '2018-03-20 01:33:49');
 
 -- --------------------------------------------------------
 
@@ -314,6 +317,29 @@ INSERT INTO `auditorias` (`id`, `tabla`, `elemento_id`, `accion`, `dato_nuevo`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `catalogos`
+--
+
+CREATE TABLE `catalogos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `tipo` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `vigente` int(11) DEFAULT NULL,
+  `descripcion` varchar(300) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `catalogos`
+--
+
+INSERT INTO `catalogos` (`id`, `nombre`, `tipo`, `vigente`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'ALEX_CATALOGO.pdf', 'Importacion', 1, 'Este es un catalogo de GAMMA, de artículos de importacion', '2018-03-01 03:00:00', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `clientes`
 --
 
@@ -420,6 +446,28 @@ CREATE TABLE `empleados` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `lineas_presupuesto`
+--
+
+CREATE TABLE `lineas_presupuesto` (
+  `id` int(11) NOT NULL,
+  `presupuesto_id` int(11) NOT NULL,
+  `cantidad` double DEFAULT NULL,
+  `articulo_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `lineas_presupuesto`
+--
+
+INSERT INTO `lineas_presupuesto` (`id`, `presupuesto_id`, `cantidad`, `articulo_id`, `created_at`, `updated_at`) VALUES
+(1, 2, 50, 19, '2018-03-19 03:48:55', '2018-03-19 03:48:55');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `localidades`
 --
 
@@ -477,13 +525,14 @@ CREATE TABLE `marcas` (
 --
 
 INSERT INTO `marcas` (`id`, `nombre`, `logo`, `pais_id`, `created_at`, `updated_at`) VALUES
-(1, 'Bosch', 'bosch.png', NULL, NULL, NULL),
-(2, 'Dewalt', 'dewalt.png', NULL, NULL, NULL),
-(3, 'Unimak', 'unimak.jpg', NULL, NULL, NULL),
-(4, 'Caterpillar', 'cat.jpg', NULL, NULL, NULL),
-(5, 'Gamma', NULL, NULL, NULL, NULL),
-(6, 'Bulonfer', NULL, NULL, NULL, NULL),
-(7, 'Black & Decker', NULL, NULL, NULL, NULL);
+(1, 'Bosch', 'bosch.png', 1, NULL, NULL),
+(2, 'Dewalt', 'dewalt.png', 15, NULL, NULL),
+(3, 'Unimak', 'unimak.jpg', 1, NULL, NULL),
+(4, 'Caterpillar', 'cat.jpg', 20, NULL, NULL),
+(5, 'Gamma', 'sin imagen', 1, NULL, NULL),
+(6, 'Bulonfer', 'bulonfer.png', 1, NULL, NULL),
+(7, 'Black & Decker', 'black&decker.png', 14, NULL, NULL),
+(9, 'Skill', 'sin imagen', 1, '2018-03-20 01:20:22', '2018-03-20 01:20:22');
 
 -- --------------------------------------------------------
 
@@ -549,14 +598,39 @@ INSERT INTO `paises` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
 (7, 'Chile', '2017-01-29 16:56:20', '2017-01-29 16:56:20'),
 (9, 'Uruguay', '2017-01-29 17:59:25', '2017-01-29 17:59:25'),
 (11, 'Guatemala', '2017-01-29 18:02:20', '2017-01-29 18:04:24'),
-(12, 'Ucrania', '2017-01-29 23:40:21', '2017-01-29 23:40:21'),
+(12, 'Canada', '2017-01-29 23:40:21', '2017-01-29 23:40:21'),
 (14, 'Japon', '2017-01-30 18:49:18', '2017-01-30 18:51:05'),
 (15, 'Australia', '2017-01-30 18:54:25', '2017-01-30 18:54:25'),
 (16, 'Suiza', '2017-01-30 19:01:00', '2017-01-30 19:01:00'),
 (17, 'Turquia', '2017-01-30 19:02:00', '2017-01-30 19:02:00'),
 (19, 'Cuba', '2017-01-30 19:04:42', '2017-01-30 19:04:42'),
-(20, 'Uzbekisqtan', '2017-02-02 21:51:48', '2017-02-02 21:51:48'),
-(22, 'Bosch', '2017-10-10 11:33:41', '2017-10-10 11:33:41');
+(20, 'Estados Unidos', '2017-02-02 21:51:48', '2017-02-02 21:51:48'),
+(22, 'China', '2017-10-10 11:33:41', '2017-10-10 11:33:41');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `presupuestos`
+--
+
+CREATE TABLE `presupuestos` (
+  `id` int(11) NOT NULL,
+  `estado` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `empleado_id` int(11) DEFAULT NULL,
+  `cliente_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `presupuestos`
+--
+
+INSERT INTO `presupuestos` (`id`, `estado`, `user_id`, `empleado_id`, `cliente_id`, `created_at`, `updated_at`) VALUES
+(1, 'pendiente', 1, NULL, NULL, '2018-03-19 03:44:25', '2018-03-19 03:44:25'),
+(2, 'pendiente', 1, NULL, NULL, '2018-03-19 03:48:55', '2018-03-19 03:48:55'),
+(3, 'pendiente', 1, NULL, NULL, '2018-03-19 03:50:19', '2018-03-19 03:50:19');
 
 -- --------------------------------------------------------
 
@@ -660,6 +734,18 @@ CREATE TABLE `rubros` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `rubros`
+--
+
+INSERT INTO `rubros` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'Albañileria', '2018-03-04 20:22:29', '2018-03-04 20:22:29'),
+(2, 'Buloneria', '2018-03-04 20:23:37', '2018-03-04 20:23:37'),
+(3, 'Ferreteria', '2018-03-04 20:24:11', '2018-03-04 20:24:11'),
+(4, 'Pintureria', '2018-03-04 20:24:29', '2018-03-04 20:24:29'),
+(5, 'Seguridad Industrial', '2018-03-04 20:25:19', '2018-03-04 20:25:19'),
+(6, 'Otro', '2018-03-04 20:25:19', '2018-03-04 20:25:19');
+
 -- --------------------------------------------------------
 
 --
@@ -670,29 +756,33 @@ CREATE TABLE `subrubros` (
   `id` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `rubro_id` int(11) DEFAULT NULL,
-  `descripcion` varchar(250) COLLATE utf8_spanish_ci DEFAULT NULL
+  `descripcion` varchar(250) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `subrubros`
 --
 
-INSERT INTO `subrubros` (`id`, `nombre`, `rubro_id`, `descripcion`) VALUES
-(1, 'Tejidos', NULL, NULL),
-(2, 'Cadenas', NULL, NULL),
-(3, 'Herramientas p/ Construcción', NULL, NULL),
-(4, 'Morzas', NULL, NULL),
-(5, 'Bisagras', NULL, NULL),
-(6, 'Candados', NULL, NULL),
-(7, 'Pinceles', NULL, NULL),
-(8, 'Varios', NULL, NULL),
-(9, 'Mazas', NULL, NULL),
-(10, 'Martillos', NULL, NULL),
-(11, 'Herramientas de Mano', NULL, NULL),
-(12, 'Soldadoras', NULL, NULL),
-(13, 'Bulones', NULL, NULL),
-(14, 'Ganchos', NULL, NULL),
-(15, 'Bisagras', NULL, NULL);
+INSERT INTO `subrubros` (`id`, `nombre`, `rubro_id`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'Tejidos', 6, NULL, NULL, NULL),
+(2, 'Cadenas', 6, NULL, NULL, NULL),
+(3, 'Herramientas p/ Construcción', 6, NULL, NULL, NULL),
+(4, 'Morzas', 6, NULL, NULL, NULL),
+(5, 'Bisagras', 6, NULL, NULL, NULL),
+(6, 'Candados', 6, NULL, NULL, NULL),
+(7, 'Pinceles', 6, NULL, NULL, NULL),
+(8, 'Varios', 6, NULL, NULL, NULL),
+(9, 'Mazas', 6, NULL, NULL, NULL),
+(10, 'Martillos', 6, NULL, NULL, NULL),
+(11, 'Herramientas de Mano', 3, NULL, NULL, '2018-03-05 14:02:36'),
+(12, 'Soldadoras', 6, NULL, NULL, NULL),
+(13, 'Bulones', 6, NULL, NULL, NULL),
+(14, 'Ganchos', 6, NULL, NULL, NULL),
+(15, 'Bisagras', 6, NULL, NULL, NULL),
+(16, 'Mamelucos', 5, NULL, '2018-03-04 21:03:18', '2018-03-04 21:03:18'),
+(17, 'Indumentaria', 5, NULL, '2018-03-04 21:03:36', '2018-03-04 21:03:36');
 
 -- --------------------------------------------------------
 
@@ -829,7 +919,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `imagen`, `password`, `rol_id`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Juan Pablo Cáceres', 'jpcaceres.nea@gmail.com', 'usuario_1499215225.jpg', '$2y$10$neE/ldNdmdO9X8.SUCgCg.W..XdiOORJTICaj35gkJ7ojByimSNyS', 1, 'XgfXolEz6hf0mNma2L6vJTAhpPtVba0Nc4vX2kkFdvXblbA2HS9yMirGz9Lg', '2016-12-05 02:16:40', '2017-04-17 20:28:42'),
-(2, 'Horacio Kuszniruk', 'hacho_k@gmail.com', 'usuario_1499775381.jpg', '$2y$10$neE/ldNdmdO9X8.SUCgCg.W..XdiOORJTICaj35gkJ7ojByimSNyS', 1, 'XgfXolEz6hf0mNma2L6vJTAhpPtVba0Nc4vX2kkFdvXblbA2HS9yMirGz9Lg', '2016-12-05 02:16:40', '2017-04-17 20:28:42');
+(2, 'Horacio Kuszniruk', 'hacho_k@gmail.com', 'usuario_1499775381.jpg', '$2y$10$neE/ldNdmdO9X8.SUCgCg.W..XdiOORJTICaj35gkJ7ojByimSNyS', 1, 'XgfXolEz6hf0mNma2L6vJTAhpPtVba0Nc4vX2kkFdvXblbA2HS9yMirGz9Lg', '2016-12-05 02:16:40', '2017-04-17 20:28:42'),
+(3, 'Juan Manuel Almiron', 'juanmah31@gmail.com', 'sin imagen', '$2y$10$neE/ldNdmdO9X8.SUCgCg.W..XdiOORJTICaj35gkJ7ojByimSNyS', 1, 'XgfXolEz6hf0mNma2L6vJTAhpPtVba0Nc4vX2kkFdvXblbA2HS9yMirGz9Lg', '2018-02-05 02:16:40', '2018-02-04 20:28:42');
 
 --
 -- Índices para tablas volcadas
@@ -844,8 +935,7 @@ ALTER TABLE `articulos`
   ADD KEY `articulos_talle_id_foreign` (`talle_id`),
   ADD KEY `marca_id` (`marca_id`),
   ADD KEY `umedida_id` (`umedida_id`),
-  ADD KEY `subrubro_id` (`subrubro_id`),
-  ADD KEY `material_id` (`material_id`);
+  ADD KEY `subrubro_id` (`subrubro_id`);
 
 --
 -- Indices de la tabla `articulos_ventas`
@@ -859,6 +949,12 @@ ALTER TABLE `articulos_ventas`
 -- Indices de la tabla `auditorias`
 --
 ALTER TABLE `auditorias`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `catalogos`
+--
+ALTER TABLE `catalogos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -886,6 +982,12 @@ ALTER TABLE `configs`
 -- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `lineas_presupuesto`
+--
+ALTER TABLE `lineas_presupuesto`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -917,6 +1019,12 @@ ALTER TABLE `migrations`
 -- Indices de la tabla `paises`
 --
 ALTER TABLE `paises`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `presupuestos`
+--
+ALTER TABLE `presupuestos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -992,7 +1100,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos_ventas`
@@ -1005,6 +1113,12 @@ ALTER TABLE `articulos_ventas`
 --
 ALTER TABLE `auditorias`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
+
+--
+-- AUTO_INCREMENT de la tabla `catalogos`
+--
+ALTER TABLE `catalogos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -1031,6 +1145,12 @@ ALTER TABLE `empleados`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `lineas_presupuesto`
+--
+ALTER TABLE `lineas_presupuesto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `localidades`
 --
 ALTER TABLE `localidades`
@@ -1040,7 +1160,7 @@ ALTER TABLE `localidades`
 -- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `materiales`
@@ -1059,6 +1179,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `paises`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT de la tabla `presupuestos`
+--
+ALTER TABLE `presupuestos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_publicados`
@@ -1082,13 +1208,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `rubros`
 --
 ALTER TABLE `rubros`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `subrubros`
 --
 ALTER TABLE `subrubros`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `talles`
@@ -1118,7 +1244,7 @@ ALTER TABLE `unidades_medidas`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -1130,53 +1256,16 @@ ALTER TABLE `users`
 ALTER TABLE `articulos`
   ADD CONSTRAINT `articulos_color_id_foreign` FOREIGN KEY (`color_id`) REFERENCES `colores` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `articulos_ibfk_1` FOREIGN KEY (`marca_id`) REFERENCES `marcas` (`id`),
+  ADD CONSTRAINT `articulos_ibfk_2` FOREIGN KEY (`marca_id`) REFERENCES `marcas` (`id`),
   ADD CONSTRAINT `articulos_ibfk_3` FOREIGN KEY (`umedida_id`) REFERENCES `unidades_medidas` (`id`),
   ADD CONSTRAINT `articulos_ibfk_4` FOREIGN KEY (`subrubro_id`) REFERENCES `subrubros` (`id`),
-  ADD CONSTRAINT `articulos_ibfk_5` FOREIGN KEY (`material_id`) REFERENCES `materiales` (`id`),
   ADD CONSTRAINT `articulos_talle_id_foreign` FOREIGN KEY (`talle_id`) REFERENCES `talles` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `articulos_ventas`
---
-ALTER TABLE `articulos_ventas`
-  ADD CONSTRAINT `articulos_ventas_articulo_id_foreign` FOREIGN KEY (`articulo_id`) REFERENCES `articulos` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `articulos_ventas_venta_id_foreign` FOREIGN KEY (`venta_id`) REFERENCES `ventas` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `clientes`
 --
 ALTER TABLE `clientes`
   ADD CONSTRAINT `clientes_localidad_id_foreign` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `configs`
---
-ALTER TABLE `configs`
-  ADD CONSTRAINT `configs_localidad_id_foreign` FOREIGN KEY (`localidad_id`) REFERENCES `localidades` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `localidades`
---
-ALTER TABLE `localidades`
-  ADD CONSTRAINT `localidades_provincia_id_foreign` FOREIGN KEY (`provincia_id`) REFERENCES `provincias` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `productos_publicados`
---
-ALTER TABLE `productos_publicados`
-  ADD CONSTRAINT `productos_publicados_tipo_publicado_id_foreign` FOREIGN KEY (`tipo_publicado_id`) REFERENCES `tipos_publicados` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `provincias`
---
-ALTER TABLE `provincias`
-  ADD CONSTRAINT `provincias_pais_id_foreign` FOREIGN KEY (`pais_id`) REFERENCES `paises` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_nivel_acceso_id_foreign` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

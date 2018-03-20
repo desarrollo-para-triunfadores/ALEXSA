@@ -27,11 +27,6 @@ class ArticulosController extends Controller
         Carbon::setlocale('es');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         if ($request->ajax()) {

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Marca;
-use App\Marcas;
 use App\Pais;
 use App\Provincia;
 use Illuminate\Support\Facades\Auth;
@@ -26,39 +25,31 @@ class MarcasController extends Controller {
      */
     public function index(Request $request) {
         $marcas = Marca::all();
+        $paises = Pais::all();
 //        if ($paises->count()==0){ // la funcion count te devuelve la cantidad de registros contenidos en la cadena
 //            return view('admin.paises.sinRegistros'); //se devuelve la vista para crear un registro
 //        } else {
-        return view('/admin/marcas/main')->with('marcas', $marcas); // se devuelven los registros
+        return view('/admin/marcas/main')
+            ->with('paises', $paises)
+            ->with('marcas', $marcas); // se devuelven los registros
 //        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create() {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request) {
         $marca = new Marca($request->all());
         $nombreImagen = 'sin imagen';
         if ($request->file('imagen'))
         {
             $file = $request->file('imagen');
-            $nombreImagen = 'GN_Producto_' . time() . '.' . $file->getClientOriginalExtension();
-            Storage::disk('productos')->put($nombreImagen, \File::get($file));
+            $nombreImagen = 'ALEXSA_marca' . time() . '.' . $file->getClientOriginalExtension();
+            Storage::disk('marcas')->put($nombreImagen, \File::get($file));
         }
 
-        $marca->imagen = $nombreImagen;
+        $marca->logo = $nombreImagen;
         $marca->save();
         Session::flash('message', 'Se ha registrado a una nueva marca');
         return redirect()->route('marcas.index');

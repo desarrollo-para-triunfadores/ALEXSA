@@ -26,8 +26,15 @@ class RubrosController extends Controller {
     public function index(Request $request) {
         //si la peticion se realiza por ajax, quiere decir que estamos en vista clientes.createForm intentando encontrar provincias desde rubro en un select.
         if($request->ajax()){
-            $subrubrosDeRubro = Subrubro::subrubros($request->id);
-            return response()->json($subrubrosDeRubro);
+            if($request->buscarRubro){
+                $subrubro = Subrubro::find($request->id);
+                $rubro = Rubro::find($subrubro->rubro_id);
+                return response()->json(json_encode($rubro, true));
+            }
+            else{            
+                $subrubrosDeRubro = Subrubro::subrubros($request->id);
+                return response()->json($subrubrosDeRubro);
+            }
         }
         $rubros = rubro::all();
 //        if ($rubros->count()==0){ // la funcion count te devuelve la cantidad de registros contenidos en la cadena

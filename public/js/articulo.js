@@ -175,3 +175,21 @@ function mandar (tipo_form) { // tipo_form puede ser create o update
     }
   })
 }
+
+
+/**Funcion para cuando se seleccione el subrubro se setee rubro que corresponde **/
+$('select#subrubro_id').on('change', function () {
+  $.ajax({
+      dataType: 'json',
+      url: "/admin/rubros", //ruta que contendra el metodo para obtener lo que necesitamos, dentro del contolador
+      data: {
+          buscarRubro: true,
+          id: $('#subrubro_id').val()
+      },
+      success: function (data) {
+          console.log(data);  //recibimos el RUBRO que corresponde al subrubro seleccionado
+          var rubro = JSON.parse(data);
+          $('#rubro_id').val(rubro.id).trigger('change')
+      }
+  });
+});

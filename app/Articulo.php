@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Articulo extends Model
 {
     protected $table =  "articulos";
-    protected $fillable = ['nombre', 'marca_id', 'talle_id', 'minimo_vendible', 'umedida_id', /*'rubro_id',*/ 'subrubro_id', 'color_id', 'imagen', 'material_id', 'descripcion'];
+    protected $fillable = ['nombre', 'marca_id', 'talle_id', 'minimo_vendible', 'umedida_id', 'subrubro_id', 'color_id', 'imagen', 'material_id', 'cod_tango', 'descripcion'];
     
     public function marca()
     {

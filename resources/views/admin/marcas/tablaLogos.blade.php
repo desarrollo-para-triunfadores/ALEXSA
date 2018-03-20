@@ -16,8 +16,8 @@
                         @foreach($marcas as $marca)
                             @if($marca->estado == 'activo')
                                 <div class="col-md-3">
-                                    @if ($marca->imagen === "sin imagen")
-                                       <div class="thumbnail"><img class="img-rounded" style="width:300px;height:200px" src="{{ asset('imagenes/marcas/sin-logo.jpg') }}"/>
+                                    @if ($marca->logo === "sin imagen")
+                                       <div class="thumbnail"><img class="img-rounded" style="width:300px;height:200px" src="{{ asset('imagenes/marcas/sin-imagen.jpg') }}"/>
                                              <div class="caption"><a data-toggle="tooltip" data-placement="left" title="Visualizar registro. Al visualizar este registro podrá acceder acciones como edición y eliminación del mismo" href="{{ route('admin.marcas.show', $marca->id) }}"> <h3>{{ $marca->nombre }}</h3></a>
 
                                                 <p><h4>Origen: {{ $marca->localidad->nombre }}</h4></p>
@@ -39,7 +39,7 @@
                                 </div>
                             @else
                                 <div class="col-md-3 ui-state-disabled">
-                                    @if ($marca->imagen === "sin imagen")
+                                    @if ($marca->logo === "sin imagen")
                                         <div class="thumbnail"><img class="img-rounded" style="width:300px;height:200px" src="{{ asset('imagenes/marcas/sin-logo.jpg') }}"/>
                                             <div class="caption"><a data-toggle="tooltip" data-placement="left" title="Visualizar registro. Al visualizar este registro podrá acceder acciones como edición y eliminación del mismo" href=""> <h3>{{ $marca->nombre }}</h3></a>
                                                 <p><h4>Origen: {{ $marca->localidad->nombre }}</h4></p>

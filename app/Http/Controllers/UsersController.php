@@ -17,17 +17,11 @@ class UsersController extends Controller {
         Carbon::setlocale('es'); // Instancio en Español el manejador de fechas de Laravel
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index() {
 
         $users = User::all();
-        return view('/admin/usuarios/main')->with('usuarios', $users);
-
-//        
+        return view('/admin/usuarios/main')->with('usuarios', $users);        
 //        $users = User::all();
 //        //$roles = Rol::all()->lists('nombre','id');
 //        if ($users->count()==0){ // la funcion count te devuelve la cantidad de registros contenidos en la cadena
@@ -37,21 +31,11 @@ class UsersController extends Controller {
 //        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create() {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request) {
         $nombreImagen = 'sin imagen';
         if ($request->file('imagen')) {
@@ -67,38 +51,20 @@ class UsersController extends Controller {
         $user->rol_id = 1;
         $user->save();
 
-
         Session::flash('message', '¡Se ha registrado a un nuevo usuario con éxito!');
         return redirect()->route('usuarios.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id) {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id) {
         //
     }
 
-    /**
-     * Actualizar el password del usuario.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function actPass(Request $request, $id) {
         $usuario = User::find($id);
         $usuario->password = bcrypt($request->password);
