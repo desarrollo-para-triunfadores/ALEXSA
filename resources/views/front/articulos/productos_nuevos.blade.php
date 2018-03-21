@@ -1,3 +1,5 @@
+
+{{--BARRA LATERAL IZQUIERDA --}}
 <div class="ui left attached demo menu">
 	<a class="item">
 		<i class="sidebar icon"></i> Categorias
@@ -9,11 +11,11 @@
 			<div class="item">
 				<a class="title active">
 					<i class="dropdown icon"></i>
-					<b>{{$rubro->nombre}}</b>
+					<b onclick="seleccionar_rubro({{$rubro->id}})">{{$rubro->nombre}}</b>
 				</a>
 				<div class="content menu active">
 					@foreach($rubro->subrubros as $subrubro)
-						<a class="item">{{$subrubro->nombre}} ({{$subrubro->articulos->count()}})</a>
+						<a class="item" onclick="seleccionar_subrubro({{ $subrubro->id }})">{{$subrubro->nombre}} ({{$subrubro->articulos->count()}})</a>
 					@endforeach
 				</div>
 			</div>
@@ -27,7 +29,6 @@
 			<div class="new-products" style="background: white">
 				<div class="container">
 					<h3>NUESTROS PRODUCTOS</h3>
-
 					<legend>Filtros </legend>
 					<div class="row animated fadeInDown">
 						<div class="col-md-4">
@@ -62,7 +63,7 @@
 						</div>
 						<div class="col-md-2">
 							<div class="form-group">
-								<label>Materiales:</label>
+								<label>Material:</label>
 								<select style="width: 100%" id="materiales" class="select2 filtro_articulos form-control" multiple>
 									@foreach($materiales as $material)
 										<option value="{{$material->id}}">{{$material->nombre}}</option>
@@ -70,6 +71,7 @@
 								</select>
 							</div>
 						</div>
+						{{--
 						<div class="col-md-2">
 							<div class="form-group">
 								<label>Colores:</label>
@@ -80,6 +82,7 @@
 								</select>
 							</div>
 						</div>
+						--}}
 					</div>
 					<br>
 					<br>
@@ -88,10 +91,18 @@
 					</div>
 				</div>
 				<script>
+					function seleccionar_rubro(rubro_id){					
+						$('#rubros').val(rubro_id).trigger('change')
+					}
+					function seleccionar_subrubro(subrubro_id){						
+						$('#subrubros').val(subrubro_id).trigger('change')
+					}
+					//↓ Barra lateral				
                     $('.ui.sidebar').sidebar({
                         context: $('.bottom.segment')
                     })
-                        .sidebar('attach events', '.menu .item');
+						.sidebar('attach events', '.menu .item');
+					//↑ Barra lateral	
 				</script>
 			</div>
 			<p></p>
@@ -100,6 +111,10 @@
 		</div>
 	</div>
 </div>
+
+{{--FIN BARRA LATERAL IZQUIERDA --}}
+
+
 {{--
 <div class="new-products" style="background: white">
 	<div class="container">
@@ -172,5 +187,7 @@
         })
             .sidebar('attach events', '.menu .item');
 	</script>
+
+	
 </div>
 --}}

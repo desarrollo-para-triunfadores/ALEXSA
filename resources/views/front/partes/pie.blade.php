@@ -78,8 +78,8 @@
             </div>
         </div>
         <div class="container">
-            <p>&copy; NEA Soft 2017 |
-                <a href="http://w3layouts.com/">W3layouts</a>
+            <p>Juan Pablo Cáceres | Horacio Kuszniruk
+                <a href="">&copy; NEA Soft 2018 </a>
             </p>
         </div>
     </div>

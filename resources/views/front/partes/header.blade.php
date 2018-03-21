@@ -123,10 +123,10 @@
 						</ul>
 					</li>
 					<li>
-						<a href="" class="act"><strike>RRHH</strike></a>
+						<a href="{{route('rrhh.index')}}" class="">RRHH</a>
 					</li>
 					<li>
-						<a href="" class="act"><strike>Novedades</strike></a>
+						<a href="" class=""><strike>Novedades</strike></a>
 					</li>
 					<li>
 						<a href="{{route('descargas.index')}}" class="act">Descargas</a>
